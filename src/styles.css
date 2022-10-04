@@ -1,0 +1,22 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+.colors {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.controls {
+  height: 100px;
+}
+.color-blocks {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100vw;
+}
