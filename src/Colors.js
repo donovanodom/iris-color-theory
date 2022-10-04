@@ -19,14 +19,26 @@ const Colors = () => {
   };
 
   const [scheme, setScheme] = useState(null);
-  const [count, setCount] = useState(5);
   const [colors, setColors] = useState(null);
+  const [base, setBase] = useState([randomNumber(0, 360),randomNumber(40, 80), randomNumber(20, 80)])
 
-  const monoChromatic = (base, count) => {
-    return Array(count)
+  const monoChromatic = (base) => {
+    return Array(5)
       .fill()
-      .map(() => [base, randomNumber(10, 100), randomNumber(10, 100)]);
+      .map(() => [base[0], randomNumber(10, 100), randomNumber(10, 100)]);
   };
+  
+  const analogous = (base) => {
+    let s1 = Math.floor(base[1] / 2), s2 = Math.floor(s1 / 2)
+    return [
+      base,
+      [base[0] + 45 > 359 ? base[0] + 45 - 360 : base[0] + 45, s1, base[2]],
+      [base[0] + 90 > 359 ? base[0] + 90 - 360 : base[0] + 90, s2, base[2]],
+      [Math.abs(base[0] - 45), s1, base[2]],
+      [Math.abs(base[0] - 90), s2, base[2]]
+    ]
+  }
+  //45, -45, 90, -90
 
   const hslToHex = (h, s, l) => {
     l /= 100;
@@ -36,7 +48,7 @@ const Colors = () => {
       const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
       return Math.round(255 * color)
         .toString(16)
-        .padStart(2, "0"); // convert to Hex and prefix "0" if needed
+        .padStart(2, "0");
     };
     return `#${f(0)}${f(8)}${f(4)}`;
   };
@@ -45,7 +57,7 @@ const Colors = () => {
     <div className="colors">
       <Controls />
       <div className="color-blocks">
-        {monoChromatic(randomNumber(0, 360), count).map(([h, s, l], i) => (
+        {analogous(base).map(([h, s, l], i) => (
           <div
             key={i}
             style={{
