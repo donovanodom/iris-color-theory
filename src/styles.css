@@ -16,12 +16,12 @@ body {
 .color-blocks {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  
+  justify-content: left;
+  flex-wrap: wrap
 }
 .color-block {
-  width: 20%;
-  aspect-ratio : 1/1;
+  display: block;
   
-  border-radius: 50%;
+  width: 25%;
+  aspect-ratio: 1/1;
 }

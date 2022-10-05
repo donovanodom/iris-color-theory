@@ -15,42 +15,49 @@ const Colors = () => {
     2: [121, 180],
     3: [181, 240],
     4: [241, 300],
-    5: [301, 360]
+    5: [301, 360],
   };
 
-  const [scheme, setScheme] = useState(null);
-  const [colors, setColors] = useState(null);
-  const [count, setCount] = useState(5);
-  const [base, setBase] = useState([randomNumber(0, 360),randomNumber(80, 95), randomNumber(80, 95)])
+  const [scheme, setScheme] = useState("monoChromatic");
+  const [count, setCount] = useState(4);
+  const [base, setBase] = useState(
+    [randomNumber(0, 360), randomNumber(80, 95), randomNumber(80, 95)],
+  );
 
   const monoChromatic = (base, count) => {
-    let 
-      arr = [], 
-      i = 1, 
+    let arr = [],
+      i = 1,
       s = Math.floor(base[1] / count),
-      l = Math.floor(base[2] / count)
-    while(i <= count){
+      l = Math.floor(base[2] / count);
+    while (i <= count) {
       arr.push([
-        base[0] > 20 && base[0] < 340 ? base[0] + randomNumber(-20,20) : base[0] < 20 ? base[0] + randomNumber(0, 40) : base[0] + randomNumber(-40, 0), 
-        s * i + randomNumber(-5,5), 
-        l * i + randomNumber(-5,5)
-      ])
-      i++
+        base[0] > 20 && base[0] < 340
+          ? base[0] + randomNumber(-20, 20)
+          : base[0] < 20
+          ? base[0] + randomNumber(0, 40)
+          : base[0] + randomNumber(-40, 0),
+        s * i + randomNumber(-5, 5),
+        l * i + randomNumber(-5, 5),
+      ]);
+      i++;
     }
-    return arr
+    return arr;
   };
-  
-  const analogous = (base) => {
-    let s1 = Math.floor(base[1] / 2), s2 = Math.floor(s1 / 2)
-    return [
-      base,
-      [base[0] + 45 > 359 ? base[0] + 45 - 360 : base[0] + 45, s1, base[2]],
-      [base[0] + 90 > 359 ? base[0] + 90 - 360 : base[0] + 90, s2, base[2]],
-      [Math.abs(base[0] - 45), s1, base[2]],
-      [Math.abs(base[0] - 90), s2, base[2]]
-    ]
-  }
-  //45, -45, 90, -90
+  const schemes = {
+    monoChromatic: monoChromatic,
+  };
+
+  // const analogous = (base) => {
+  //   let s1 = Math.floor(base[1] / 2), s2 = Math.floor(s1 / 2)
+  //   return [
+  //     base,
+  //     [base[0] + 45 > 359 ? base[0] + 45 - 360 : base[0] + 45, s1, base[2]],
+  //     [base[0] + 90 > 359 ? base[0] + 90 - 360 : base[0] + 90, s2, base[2]],
+  //     [Math.abs(base[0] - 45), s1, base[2]],
+  //     [Math.abs(base[0] - 90), s2, base[2]]
+  //   ]
+  // }
+  // 45, -45, 90, -90
 
   const hslToHex = (h, s, l) => {
     l /= 100;
@@ -64,29 +71,25 @@ const Colors = () => {
     };
     return `#${f(0)}${f(8)}${f(4)}`;
   };
-  
+
   const generate = () => {
-    setBase([randomNumber(0, 360),randomNumber(80, 100), randomNumber(80, 100)])
-  }
-  
+    setBase([randomNumber(0, 360), randomNumber(80, 95), randomNumber(80, 95)]);
+  };
+
   const handleCount = (e) => {
-    setCount(e.target.value)
-  }
+    setCount(e.target.value);
+  };
 
   return (
     <div className="colors">
-      <Controls 
-        generate = {generate}
-        handleCount = {handleCount}
-        count={count}
-      />
+      <Controls generate={generate} handleCount={handleCount} count={count} />
       <div className="color-blocks">
-        {monoChromatic(base, count).map(([h, s, l], i) => (
+        {schemes[scheme](base, count).map(([h, s, l], i) => (
           <div
-            className='color-block'
+            className="color-block"
             key={i}
             style={{
-              backgroundColor: `hsl(${h}, ${s}%, ${l}%)`
+              backgroundColor: `hsl(${h}, ${s}%, ${l}%)`,
             }}
           >
             {hslToHex(h, s, l).toUpperCase()}
