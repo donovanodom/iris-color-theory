@@ -21,7 +21,7 @@ const Colors = () => {
   const [scheme, setScheme] = useState(null);
   const [colors, setColors] = useState(null);
   const [count, setCount] = useState(5);
-  const [base, setBase] = useState([randomNumber(0, 360),randomNumber(50, 100), randomNumber(50, 100)])
+  const [base, setBase] = useState([randomNumber(0, 360),randomNumber(80, 95), randomNumber(80, 95)])
 
   const monoChromatic = (base, count) => {
     let 
@@ -31,7 +31,7 @@ const Colors = () => {
       l = Math.floor(base[2] / count)
     while(i <= count){
       arr.push([
-        base[0] > 10 && base[0] < 350 ? base[0] + randomNumber(-10,10) : base[0] < 10 ? base[0] + randomNumber(0, 20) : base[0] + randomNumber(-20, 0), 
+        base[0] > 20 && base[0] < 340 ? base[0] + randomNumber(-20,20) : base[0] < 20 ? base[0] + randomNumber(0, 40) : base[0] + randomNumber(-40, 0), 
         s * i + randomNumber(-5,5), 
         l * i + randomNumber(-5,5)
       ])
@@ -66,7 +66,7 @@ const Colors = () => {
   };
   
   const generate = () => {
-    setBase([randomNumber(0, 360),randomNumber(50, 100), randomNumber(50, 100)])
+    setBase([randomNumber(0, 360),randomNumber(80, 100), randomNumber(80, 100)])
   }
   
   const handleCount = (e) => {
@@ -83,10 +83,10 @@ const Colors = () => {
       <div className="color-blocks">
         {monoChromatic(base, count).map(([h, s, l], i) => (
           <div
+            className='color-block'
             key={i}
             style={{
-              backgroundColor: `hsl(${h}, ${s}%, ${l}%)`,
-              height: "100%"
+              backgroundColor: `hsl(${h}, ${s}%, ${l}%)`
             }}
           >
             {hslToHex(h, s, l).toUpperCase()}

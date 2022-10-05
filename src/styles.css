@@ -7,7 +7,6 @@ body {
   padding: 0;
 }
 .colors {
-  height: 100vh;
   display: flex;
   flex-direction: column;
 }
@@ -16,7 +15,13 @@ body {
 }
 .color-blocks {
   display: flex;
-  flex-direction: column;
-  height: 100%;
-  width: 100vw;
+  flex-direction: row;
+  justify-content: space-around;
+  
+}
+.color-block {
+  width: 20%;
+  aspect-ratio : 1/1;
+  
+  border-radius: 50%;
 }
