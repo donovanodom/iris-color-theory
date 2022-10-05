@@ -41,7 +41,7 @@ const Colors = () => {
       ]);
       i++;
     }
-    return arr;
+    return arr.reverse();
   };
   const schemes = {
     monoChromatic: monoChromatic,
