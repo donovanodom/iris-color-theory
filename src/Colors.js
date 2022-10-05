@@ -20,12 +20,21 @@ const Colors = () => {
 
   const [scheme, setScheme] = useState(null);
   const [colors, setColors] = useState(null);
-  const [base, setBase] = useState([randomNumber(0, 360),randomNumber(40, 80), randomNumber(20, 80)])
+  const [base, setBase] = useState([randomNumber(0, 360),randomNumber(0, 100), randomNumber(0, 100)])
 
   const monoChromatic = (base) => {
-    return Array(5)
-      .fill()
-      .map(() => [base[0], randomNumber(10, 100), randomNumber(10, 100)]);
+    let arr = [base], s = 10 + Math.floor((Math.abs(base[1] - 50)/2)), l = 1 + Math.floor((Math.abs(base[2] - 50)/2)), i = 0
+    while(i < 4){
+      arr.push([
+        base[0], 
+        base[1] > 50 ? base[1] - (s + randomNumber(0,4)) : base[1] + (s + randomNumber(0,4)), 
+        base[2] > 50 ? base[2] - (l + randomNumber(1,2)) : base[2] + (l + randomNumber(1,2))
+      ])
+      i++
+      s -= 2
+      l -= 2
+    }
+    return arr
   };
   
   const analogous = (base) => {
@@ -52,12 +61,18 @@ const Colors = () => {
     };
     return `#${f(0)}${f(8)}${f(4)}`;
   };
+  
+  const generate = () => {
+    setBase([randomNumber(0, 360),randomNumber(0, 100), randomNumber(0, 100)])
+  }
 
   return (
     <div className="colors">
-      <Controls />
+      <Controls 
+        generate = {generate}
+      />
       <div className="color-blocks">
-        {analogous(base).map(([h, s, l], i) => (
+        {monoChromatic(base).map(([h, s, l], i) => (
           <div
             key={i}
             style={{
