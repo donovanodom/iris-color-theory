@@ -20,18 +20,22 @@ const Colors = () => {
 
   const [scheme, setScheme] = useState(null);
   const [colors, setColors] = useState(null);
-  const [base, setBase] = useState([randomNumber(0, 360),randomNumber(0, 100), randomNumber(0, 100)])
+  const [count, setCount] = useState(5);
+  const [base, setBase] = useState([randomNumber(0, 360),randomNumber(50, 100), randomNumber(50, 100)])
 
-  const monoChromatic = (base) => {
-    let arr = [base], s = 10 + Math.floor((Math.abs(base[1] - 50)/2)), l = 5 + Math.floor((Math.abs(base[2] - 50)/2)), i = 0
-    while(i < 4){
+  const monoChromatic = (base, count) => {
+    let 
+      arr = [], 
+      i = 1, 
+      s = Math.floor(base[1] / count),
+      l = Math.floor(base[2] / count)
+    while(i <= count){
       arr.push([
-        base[0], 
-        base[1] > 50 ? base[1] - (s + randomNumber(1,4)) : base[1] + (s + randomNumber(0,4)), 
-        base[2] > 50 ? base[2] - (l + randomNumber(1,2)) : base[2] + (l + randomNumber(1,2))
+        base[0] > 10 && base[0] < 350 ? base[0] + randomNumber(-10,10) : base[0] < 10 ? base[0] + randomNumber(0, 20) : base[0] + randomNumber(-20, 0), 
+        s * i + randomNumber(-5,5), 
+        l * i + randomNumber(-5,5)
       ])
       i++
-
     }
     return arr
   };
@@ -62,16 +66,22 @@ const Colors = () => {
   };
   
   const generate = () => {
-    setBase([randomNumber(0, 360),randomNumber(0, 100), randomNumber(0, 100)])
+    setBase([randomNumber(0, 360),randomNumber(50, 100), randomNumber(50, 100)])
+  }
+  
+  const handleCount = (e) => {
+    setCount(e.target.value)
   }
 
   return (
     <div className="colors">
       <Controls 
         generate = {generate}
+        handleCount = {handleCount}
+        count={count}
       />
       <div className="color-blocks">
-        {monoChromatic(base).map(([h, s, l], i) => (
+        {monoChromatic(base, count).map(([h, s, l], i) => (
           <div
             key={i}
             style={{
