@@ -23,16 +23,15 @@ const Colors = () => {
   const [base, setBase] = useState([randomNumber(0, 360),randomNumber(0, 100), randomNumber(0, 100)])
 
   const monoChromatic = (base) => {
-    let arr = [base], s = 10 + Math.floor((Math.abs(base[1] - 50)/2)), l = 1 + Math.floor((Math.abs(base[2] - 50)/2)), i = 0
+    let arr = [base], s = 10 + Math.floor((Math.abs(base[1] - 50)/2)), l = 5 + Math.floor((Math.abs(base[2] - 50)/2)), i = 0
     while(i < 4){
       arr.push([
         base[0], 
-        base[1] > 50 ? base[1] - (s + randomNumber(0,4)) : base[1] + (s + randomNumber(0,4)), 
+        base[1] > 50 ? base[1] - (s + randomNumber(1,4)) : base[1] + (s + randomNumber(0,4)), 
         base[2] > 50 ? base[2] - (l + randomNumber(1,2)) : base[2] + (l + randomNumber(1,2))
       ])
       i++
-      s -= 2
-      l -= 2
+
     }
     return arr
   };
