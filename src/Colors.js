@@ -21,11 +21,26 @@ const Colors = () => {
     5: [301, 360],
   };
 
-  const [scheme, setScheme] = useState("monoChromatic");
+  const [scheme, setScheme] = useState("analogous");
   const [count, setCount] = useState(4);
   const [base, setBase] = useState(
     [randomNumber(0, 360), randomNumber(80, 95), randomNumber(80, 95)],
   );
+  
+  const shuffleOrder = (arr) => {
+    let shuffled = [], left = randomNumber(0,arr.length - 1), right = left + 1
+    while(left >= 0 || right < arr.length){
+      if(left >= 0){
+        shuffled.push(arr[left])
+        left--
+      }
+      if(right < arr.length){
+        shuffled.push(arr[right])
+        right++
+      }
+    }
+    return shuffled
+  }
 
   const monoChromatic = (base, count) => {
     let arr = [base],
@@ -44,44 +59,31 @@ const Colors = () => {
       ]);
       i++;
     }
-    let shuffled = [], left = randomNumber(0,arr.length - 1), right = left + 1
-    while(left >= 0 || right < arr.length){
-      if(left >= 0){
-        shuffled.push(arr[left])
-        left--
-      }
-      if(right < arr.length){
-        shuffled.push(arr[right])
-        right++
-      }
-    }
-    // let left = 0
-    // while(left < arr.length - 1){
-    //   let right = randomNumber(left + 1, arr.length-1)
-    //   const tempbasetemp1 = arr[left][1], temp2 = arr[left][2]
-    //   arr[left][1] = arr[right][1]
-    //   arr[left][2] = arr[right][2]
-    //   arr[right][1] = temp1
-    //   arr[right][2] = temp2
-    //   left ++
-    // }
-    return shuffled
+    return shuffleOrder(arr)
   };
+  
+  const analogous = (base, count) => {
+    let i = 0, j = 0, arr = [], piv = [...base], shift = [0,-35,-70,35,70]
+    
+    while(i < count){
+      let s = randomNumber(-20,-1), l = randomNumber(-20,-1)
+      piv[1] = piv[1] + s < 10 ? randomNumber(50,90) : piv[1] + s
+      piv[2] = piv[2] + l < 10 ? randomNumber(50,90) : piv[2] + l
+      if(j >= 5) j = 0
+      arr.push([piv[0] + shift[j] < 0 ? piv[0] - shift[j] + 360 : piv[0] + shift[j] > 359 ? piv[0] + shift[j] - 360 : piv[0] + shift[j], piv[1], piv[2]])
+      i++
+      j++
+    }
+    return shuffleOrder(arr)
+  }
+  
   const schemes = {
     monoChromatic: monoChromatic,
+    analogous: analogous
   };
 
-  // const analogous = (base) => {
-  //   let s1 = Math.floor(base[1] / 2), s2 = Math.floor(s1 / 2)
-  //   return [
-  //     base,
-  //     [base[0] + 45 > 359 ? base[0] + 45 - 360 : base[0] + 45, s1, base[2]],
-  //     [base[0] + 90 > 359 ? base[0] + 90 - 360 : base[0] + 90, s2, base[2]],
-  //     [Math.abs(base[0] - 45), s1, base[2]],
-  //     [Math.abs(base[0] - 90), s2, base[2]]
-  //   ]
-  // }
-  // 45, -45, 90, -90
+ 
+  // 35
 
   const hslToHex = (h, s, l) => {
     l /= 100;
