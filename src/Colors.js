@@ -24,7 +24,7 @@ const Colors = () => {
   const [scheme, setScheme] = useState("monoChromatic");
   const [count, setCount] = useState(4);
   const [base, setBase] = useState(
-    [randomNumber(0, 359), randomNumber(80, 95), randomNumber(80, 95)],
+    [randomNumber(0, 359), randomNumber(20, 80), randomNumber(20, 80)],
   );
   
   const shuffleOrder = (arr) => {
@@ -42,33 +42,45 @@ const Colors = () => {
     return shuffled
   }
 
+  // const monoChromatic = (base, count) => {
+  //   let arr = [base],
+  //     i = 2,
+  //     s = Math.floor(base[1] / count),
+  //     l = Math.floor(base[2] / count);
+  //   while (i <= count) {
+  //     arr.push([
+  //       base[0] > 20 && base[0] < 340
+  //         ? base[0] + randomNumber(-20, 20)
+  //         : base[0] < 20
+  //         ? base[0] + randomNumber(0, 40)
+  //         : base[0] + randomNumber(-40, 0),
+  //       s * i + randomNumber(0, 5),
+  //       l * i + randomNumber(0, 5),
+  //     ]);
+  //     i++;
+  //   }
+  //   return shuffleOrder(arr)
+  // };
+  
   const monoChromatic = (base, count) => {
-    let arr = [base],
-      i = 2,
-      s = Math.floor(base[1] / count),
-      l = Math.floor(base[2] / count);
-    while (i <= count) {
-      arr.push([
-        base[0] > 20 && base[0] < 340
-          ? base[0] + randomNumber(-20, 20)
-          : base[0] < 20
-          ? base[0] + randomNumber(0, 40)
-          : base[0] + randomNumber(-40, 0),
-        s * i + randomNumber(0, 5),
-        l * i + randomNumber(0, 5),
-      ]);
-      i++;
+    let i = 0, arr = [], piv = [...base]
+    while(i < count){
+      let s = randomNumber(-20,-1), l = randomNumber(-20,-1)
+      piv[1] = piv[1] + s < 20 ? randomNumber(20,95) : piv[1] + s
+      piv[2] = piv[2] + l < 20 ? randomNumber(20,95) : piv[2] + l
+      arr.push([piv[0], piv[1], piv[2]])
+      i++
     }
     return shuffleOrder(arr)
-  };
+  }
   
   const analogous = (base, count) => {
     let i = 0, j = 0, arr = [], piv = [...base], shift = [0,-35,-70,35,70]
     
     while(i < count){
       let s = randomNumber(-20,-1), l = randomNumber(-20,-1)
-      piv[1] = piv[1] + s < 20 ? randomNumber(50,90) : piv[1] + s
-      piv[2] = piv[2] + l < 20 ? randomNumber(50,90) : piv[2] + l
+      piv[1] = piv[1] + s < 20 ? randomNumber(20,95) : piv[1] + s
+      piv[2] = piv[2] + l < 20 ? randomNumber(20,95) : piv[2] + l
       if(j >= 5) j = 0
       arr.push([piv[0] + shift[j] < 0 ? piv[0] - shift[j] + 360 : piv[0] + shift[j] > 359 ? piv[0] + shift[j] - 360 : piv[0] + shift[j], piv[1], piv[2]])
       i++
@@ -82,8 +94,8 @@ const Colors = () => {
     while(i < count){
       if(i % 2 == 0){
         let s = randomNumber(-20,-1), l = randomNumber(-20,-1)
-        piv[1] = piv[1] + s < 20 ? randomNumber(50,90) : piv[1] + s
-        piv[2] = piv[2] + l < 20 ? randomNumber(50,90) : piv[2] + l
+        piv[1] = piv[1] + s < 20 ? randomNumber(20,95) : piv[1] + s
+        piv[2] = piv[2] + l < 20 ? randomNumber(20,95) : piv[2] + l
         arr.push([piv[0], piv[1], piv[2]])
       }else{
         arr.push([comp, piv[1], piv[2]])
@@ -93,14 +105,56 @@ const Colors = () => {
     return shuffleOrder(arr)
   }
   
+  const splitComplementary = (base, count) => {
+    let i = 0, arr = [], piv = [...base], comp = piv[0] - 180 < 0 ? 360 + piv[0] - 180 : piv[0] - 180
+    while(i < count){
+      if(i % 2 == 0){
+        arr.push([piv[0], piv[1], piv[2]])
+      }else{
+        arr.push([comp, piv[1], piv[2]])
+        let s = randomNumber(-50,-20), l = randomNumber(-50,-20)
+        piv[1] = piv[1] + s < 20 ? randomNumber(20,95) : piv[1] + s
+        piv[2] = piv[2] + l < 20 ? randomNumber(20,95) : piv[2] + l
+      }
+      i++
+    }
+    return shuffleOrder(arr)
+  }
+  
+  const triadic = (base, count) => {
+    let 
+      i = 0, 
+      j = 0,
+      arr = [], 
+      piv = [...base], 
+      t1 = piv[0] - 120 < 0 ? 360 + piv[0] - 120 : piv[0] - 120, 
+      t2 = t1 - 180 < 0 ? 360 + t1 - 180 : t1 - 180, 
+      triad = ['first','second','third']
+    while(i < count){
+      if(j > 2) j = 0
+      if(triad[j] == 'first'){
+        arr.push([piv[0], piv[1], piv[2]])
+      }else if(triad[j] == 'second'){
+        arr.push([t1, piv[1], piv[2]])
+      }else if(triad[j] == 'third'){
+        arr.push([t2, piv[1], piv[2]])
+        let s = randomNumber(-20,1), l = randomNumber(-20,1)
+        piv[1] = piv[1] + s < 20 ? randomNumber(20,95) : piv[1] + s
+        piv[2] = piv[2] + l < 20 ? randomNumber(20,95) : piv[2] + l
+      }
+      i++
+      j++
+    }
+    return shuffleOrder(arr)
+  }
+  
   const schemes = {
     monoChromatic: monoChromatic,
     analogous: analogous,
-    complementary: complementary
+    complementary: complementary,
+    splitComplementary: splitComplementary,
+    triadic: triadic
   };
-
- 
-  // 35
 
   const hslToHex = (h, s, l) => {
     l /= 100;
@@ -116,7 +170,7 @@ const Colors = () => {
   };
 
   const generate = () => {
-    setBase([randomNumber(0, 360), randomNumber(80, 95), randomNumber(80, 95)]);
+    setBase([randomNumber(0, 360), randomNumber(20, 80), randomNumber(20, 80)]);
   };
 
   const handleCount = (e) => {

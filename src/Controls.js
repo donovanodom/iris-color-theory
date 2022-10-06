@@ -9,6 +9,8 @@ const Controls = ({generate, handleCount, count, handleScheme, scheme}) => {
         <option value="monoChromatic">MonoChromatic</option>
         <option value="analogous">Analogous</option>
         <option value="complementary">Complementary</option>
+        <option value="splitComplementary">Split Complementary</option>
+        <option value='triadic'>Triadic</option>
        </select>
     </div>
   )
