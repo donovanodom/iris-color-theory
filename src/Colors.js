@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import Controls from "./Controls";
+import Color from './Color'
 
 const Colors = () => {
   const randomNumber = (min, max) => {
@@ -8,6 +9,8 @@ const Colors = () => {
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
+  
+  
 
   const hsv = {
     0: [0, 16],
@@ -36,19 +39,33 @@ const Colors = () => {
           : base[0] < 20
           ? base[0] + randomNumber(0, 40)
           : base[0] + randomNumber(-40, 0),
-        s * i + randomNumber(-5, 5),
-        l * i + randomNumber(-5, 5),
+        s * i + randomNumber(0, 5),
+        l * i + randomNumber(0, 5),
       ]);
       i++;
     }
-    let left = 0
-    while(left < arr.length){
-      let right = randomNumber(0, arr.length-1)
-      
-      [arr[left],arr[right]] = [arr[right],arr[left]]
-      left ++
+    let shuffled = [], left = randomNumber(0,arr.length - 1), right = left + 1
+    while(left >= 0 || right < arr.length){
+      if(left >= 0){
+        shuffled.push(arr[left])
+        left--
+      }
+      if(right < arr.length){
+        shuffled.push(arr[right])
+        right++
+      }
     }
-    return arr
+    // let left = 0
+    // while(left < arr.length - 1){
+    //   let right = randomNumber(left + 1, arr.length-1)
+    //   const tempbasetemp1 = arr[left][1], temp2 = arr[left][2]
+    //   arr[left][1] = arr[right][1]
+    //   arr[left][2] = arr[right][2]
+    //   arr[right][1] = temp1
+    //   arr[right][2] = temp2
+    //   left ++
+    // }
+    return shuffled
   };
   const schemes = {
     monoChromatic: monoChromatic,
@@ -92,15 +109,14 @@ const Colors = () => {
       <Controls generate={generate} handleCount={handleCount} count={count} />
       <div className="color-blocks">
         {schemes[scheme](base, count).map(([h, s, l], i) => (
-          <div
-            className="color-block"
+          <Color 
             key={i}
-            style={{
-              backgroundColor: `hsl(${h}, ${s}%, ${l}%)`,
-            }}
-          >
-            {hslToHex(h, s, l).toUpperCase()}
-          </div>
+            h={h}
+            s={s}
+            l={l}
+            i={i}
+            hslToHex={hslToHex}
+          />
         ))}
       </div>
     </div>
