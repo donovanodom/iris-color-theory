@@ -11,6 +11,7 @@ const Controls = ({generate, handleCount, count, handleScheme, scheme}) => {
         <option value="complementary">Complementary</option>
         <option value="splitComplementary">Split Complementary</option>
         <option value='triadic'>Triadic</option>
+        <option value='square'>Square</option>
        </select>
     </div>
   )

@@ -98,7 +98,8 @@ const Colors = () => {
         piv[2] = piv[2] + l < 20 ? randomNumber(20,95) : piv[2] + l
         arr.push([piv[0], piv[1], piv[2]])
       }else{
-        arr.push([comp, piv[1], piv[2]])
+        let s = randomNumber(-20,-1), l = randomNumber(-20,-1)
+        arr.push([comp, piv[1] + s < 20 ? randomNumber(20,95) : piv[1] + s, piv[2] + l < 20 ? randomNumber(20,95) : piv[2] + l])
       }
       i++
     }
@@ -128,17 +129,50 @@ const Colors = () => {
       arr = [], 
       piv = [...base], 
       t1 = piv[0] - 120 < 0 ? 360 + piv[0] - 120 : piv[0] - 120, 
-      t2 = t1 - 180 < 0 ? 360 + t1 - 180 : t1 - 180, 
+      t2 = t1 - 120 < 0 ? 360 + t1 - 120 : t1 - 120, 
       triad = ['first','second','third']
     while(i < count){
       if(j > 2) j = 0
       if(triad[j] == 'first'){
         arr.push([piv[0], piv[1], piv[2]])
       }else if(triad[j] == 'second'){
-        arr.push([t1, piv[1], piv[2]])
-      }else if(triad[j] == 'third'){
-        arr.push([t2, piv[1], piv[2]])
         let s = randomNumber(-20,1), l = randomNumber(-20,1)
+        arr.push([t1, piv[1] + s < 20 ? randomNumber(20,95) : piv[1] + s, piv[2] + l < 20 ? randomNumber(20,95) : piv[2] + l])
+      }else if(triad[j] == 'third'){
+        let s = randomNumber(-20,1), l = randomNumber(-20,1)
+        arr.push([t2, piv[1] + s < 20 ? randomNumber(20,95) : piv[1] + s, piv[2] + l < 20 ? randomNumber(20,95) : piv[2] + l])
+        piv[1] = piv[1] + s < 20 ? randomNumber(20,95) : piv[1] + s
+        piv[2] = piv[2] + l < 20 ? randomNumber(20,95) : piv[2] + l
+      }
+      i++
+      j++
+    }
+    return shuffleOrder(arr)
+  }
+  
+  const square = (base, count) => {
+    let 
+      i = 0, 
+      j = 0,
+      arr = [], 
+      piv = [...base], 
+      t1 = piv[0] - 90 < 0 ? 360 + piv[0] - 90 : piv[0] - 90, 
+      t2 = t1 - 90 < 0 ? 360 + t1 - 90 : t1 - 90, 
+      t3 = t2 - 90 < 0 ? 360 + t2 - 90 : t2 - 90, 
+      square = ['first','second','third','fourth']
+    while(i < count){
+      if(j > 3) j = 0
+      if(square[j] == 'first'){
+        arr.push([piv[0], piv[1], piv[2]])
+      }else if(square[j] == 'second'){
+        let s = randomNumber(-20,1), l = randomNumber(-20,1)
+        arr.push([t1, piv[1] + s < 20 ? randomNumber(20,95) : piv[1] + s, piv[2] + l < 20 ? randomNumber(20,95) : piv[2] + l])
+      }else if(square[j] == 'third'){
+        let s = randomNumber(-20,1), l = randomNumber(-20,1)
+        arr.push([t2, piv[1] + s < 20 ? randomNumber(20,95) : piv[1] + s, piv[2] + l < 20 ? randomNumber(20,95) : piv[2] + l])
+      }else if(square[j] == 'fourth'){
+        let s = randomNumber(-20,1), l = randomNumber(-20,1)
+        arr.push([t3, piv[1] + s < 20 ? randomNumber(20,95) : piv[1] + s, piv[2] + l < 20 ? randomNumber(20,95) : piv[2] + l])
         piv[1] = piv[1] + s < 20 ? randomNumber(20,95) : piv[1] + s
         piv[2] = piv[2] + l < 20 ? randomNumber(20,95) : piv[2] + l
       }
@@ -153,7 +187,8 @@ const Colors = () => {
     analogous: analogous,
     complementary: complementary,
     splitComplementary: splitComplementary,
-    triadic: triadic
+    triadic: triadic,
+    square: square
   };
 
   const hslToHex = (h, s, l) => {
