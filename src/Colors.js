@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import Controls from "./Controls";
-import Color from './Color'
+import Color from './Color';
 
 const Colors = () => {
   const randomNumber = (min, max) => {
@@ -21,10 +21,10 @@ const Colors = () => {
     5: [301, 360],
   };
 
-  const [scheme, setScheme] = useState("analogous");
+  const [scheme, setScheme] = useState("monoChromatic");
   const [count, setCount] = useState(4);
   const [base, setBase] = useState(
-    [randomNumber(0, 360), randomNumber(80, 95), randomNumber(80, 95)],
+    [randomNumber(0, 359), randomNumber(80, 95), randomNumber(80, 95)],
   );
   
   const shuffleOrder = (arr) => {
@@ -67,8 +67,8 @@ const Colors = () => {
     
     while(i < count){
       let s = randomNumber(-20,-1), l = randomNumber(-20,-1)
-      piv[1] = piv[1] + s < 10 ? randomNumber(50,90) : piv[1] + s
-      piv[2] = piv[2] + l < 10 ? randomNumber(50,90) : piv[2] + l
+      piv[1] = piv[1] + s < 20 ? randomNumber(50,90) : piv[1] + s
+      piv[2] = piv[2] + l < 20 ? randomNumber(50,90) : piv[2] + l
       if(j >= 5) j = 0
       arr.push([piv[0] + shift[j] < 0 ? piv[0] - shift[j] + 360 : piv[0] + shift[j] > 359 ? piv[0] + shift[j] - 360 : piv[0] + shift[j], piv[1], piv[2]])
       i++
@@ -77,9 +77,26 @@ const Colors = () => {
     return shuffleOrder(arr)
   }
   
+  const complementary = (base, count) => {
+    let i = 0, arr = [], piv = [...base], comp = piv[0] - 180 < 0 ? 360 + piv[0] - 180 : piv[0] - 180
+    while(i < count){
+      if(i % 2 == 0){
+        let s = randomNumber(-20,-1), l = randomNumber(-20,-1)
+        piv[1] = piv[1] + s < 20 ? randomNumber(50,90) : piv[1] + s
+        piv[2] = piv[2] + l < 20 ? randomNumber(50,90) : piv[2] + l
+        arr.push([piv[0], piv[1], piv[2]])
+      }else{
+        arr.push([comp, piv[1], piv[2]])
+      }
+      i++
+    }
+    return shuffleOrder(arr)
+  }
+  
   const schemes = {
     monoChromatic: monoChromatic,
-    analogous: analogous
+    analogous: analogous,
+    complementary: complementary
   };
 
  
@@ -105,10 +122,14 @@ const Colors = () => {
   const handleCount = (e) => {
     setCount(e.target.value);
   };
+  
+  const handleScheme = (e) => {
+    setScheme(e.target.value)
+  }
 
   return (
     <div className="colors">
-      <Controls generate={generate} handleCount={handleCount} count={count} />
+      <Controls generate={generate} handleCount={handleCount} count={count} handleScheme={handleScheme} scheme={scheme}/>
       <div className="color-blocks">
         {schemes[scheme](base, count).map(([h, s, l], i) => (
           <Color 
