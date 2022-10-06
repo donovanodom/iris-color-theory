@@ -9,6 +9,7 @@ body {
 .colors {
   display: flex;
   flex-direction: column;
+  height: 100vh;
 }
 .controls {
   height: 100px;
@@ -17,11 +18,11 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: left;
-  flex-wrap: wrap
+  flex-wrap: wrap;
+  height: 100%;
 }
 .color-block {
   display: block;
-  
   width: 25%;
-  aspect-ratio: 1/1;
+  flex-grow: 1;
 }

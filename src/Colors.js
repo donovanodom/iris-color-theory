@@ -25,8 +25,8 @@ const Colors = () => {
   );
 
   const monoChromatic = (base, count) => {
-    let arr = [],
-      i = 1,
+    let arr = [base],
+      i = 2,
       s = Math.floor(base[1] / count),
       l = Math.floor(base[2] / count);
     while (i <= count) {
@@ -41,7 +41,14 @@ const Colors = () => {
       ]);
       i++;
     }
-    return arr.reverse();
+    let left = 0
+    while(left < arr.length){
+      let right = randomNumber(0, arr.length-1)
+      
+      [arr[left],arr[right]] = [arr[right],arr[left]]
+      left ++
+    }
+    return arr
   };
   const schemes = {
     monoChromatic: monoChromatic,
