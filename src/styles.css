@@ -15,6 +15,8 @@ body {
   width: 100%;
 }
 .controls {
+  color: #808080;
+  font-weight: 700;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -23,10 +25,17 @@ body {
   height: 100vh;
   width: 120px;
 }
+.tools{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 300px
+}
 
 .icons {
   color: #808080;
-  font-size: 24px;
+  font-size: 20px;
 }
 
 .icons:hover{
@@ -46,7 +55,7 @@ body {
   color: #808080;
   background-color: transparent;
   border: none;
-  font-size: 24px;
+  font-size: 20px;
 }
 #up-arrow{
   position: relative;
