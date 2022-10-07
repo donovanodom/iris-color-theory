@@ -113,9 +113,9 @@ const Colors = () => {
         arr.push([piv[0], piv[1], piv[2]])
       }else{
         arr.push([comp, piv[1], piv[2]])
-        let s = randomNumber(-50,-20), l = randomNumber(-50,-20)
-        piv[1] = piv[1] + s < 20 ? randomNumber(20,95) : piv[1] + s
-        piv[2] = piv[2] + l < 20 ? randomNumber(20,95) : piv[2] + l
+        let s = randomNumber(-50,-30), l = randomNumber(-50,-30)
+        piv[1] = piv[1] + s < 20 ? randomNumber(50,95) : piv[1] + s
+        piv[2] = piv[2] + l < 20 ? randomNumber(50,95) : piv[2] + l
       }
       i++
     }
