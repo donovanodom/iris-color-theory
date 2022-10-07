@@ -3,6 +3,7 @@ import { useState } from "react";
 import Controls from "./Controls";
 import Color from './Color';
 
+
 const Colors = () => {
   const randomNumber = (min, max) => {
     min = Math.ceil(min);
@@ -10,16 +11,7 @@ const Colors = () => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
   
-  
-
-  const hsv = {
-    0: [0, 16],
-    1: [61, 120],
-    2: [121, 180],
-    3: [181, 240],
-    4: [241, 300],
-    5: [301, 360],
-  };
+  const namer = require('color-namer')
 
   const [scheme, setScheme] = useState("monoChromatic");
   const [count, setCount] = useState(4);
@@ -222,6 +214,7 @@ const Colors = () => {
       <div className="color-blocks">
         {schemes[scheme](base, count).map(([h, s, l], i) => (
           <Color 
+            name={namer(hslToHex(h,s,l),{pick: ['ntc'], distance: 'deltaE'})['ntc'][0]['name']}
             key={i}
             h={h}
             s={s}

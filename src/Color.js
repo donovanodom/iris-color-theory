@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Color = ({h, s, l, i, hslToHex}) => {
+const Color = ({h, s, l, i, hslToHex, name}) => {
     const hexToRgb = function(str){
         str = str.slice(1)
         let RgbHex = str.match(/.{1,2}/g);
@@ -18,6 +18,7 @@ const Color = ({h, s, l, i, hslToHex}) => {
             <ul className='color-code'>
                 <li>{hex}</li>
                 <li>{hexToRgb(hex)}</li>
+                <li>{name ? name : 'unknowncolor'}</li>
             </ul>
         </div>
     )
