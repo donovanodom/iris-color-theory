@@ -10,18 +10,66 @@ body {
 }
 .colors {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   height: 100vh;
+  width: 100%;
 }
 .controls {
-  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Montserrat', sans-serif;
+  height: 100vh;
 }
+
+#generate{
+  color: #246DFF;
+  font-size: 30px;
+
+}
+
+.controls select{
+  font-family: 'Montserrat', sans-serif;
+  width: auto;
+  height: 35px;
+  border-radius: 7px;
+  color: #246DFF;
+  border: 2px solid #246DFF;
+  text-transform:capitalize;
+  font-size: 14.8px;
+  font-weight: 600;
+  outline: none;
+}
+
+.controls input{
+  font-family: 'Montserrat', sans-serif;
+  width: auto;
+  height: 28px;
+  border-radius: 7px;
+  color: #246DFF;
+  padding: 2px;
+  border: 2px solid #246DFF;
+  text-transform:capitalize;
+  font-size: 14.8px;
+  font-weight: 600;
+  outline: none;
+}
+
+.controls select:active{
+  border: 2px solid #246DFF;
+}
+#generate:hover{
+  color: #165AE4;
+}
+
 .color-blocks {
   display: flex;
   flex-direction: row;
   justify-content: left;
   flex-wrap: wrap;
   height: 100%;
+  width:100%
 }
 .color-block {
   display: block;
@@ -31,6 +79,7 @@ body {
   justify-content: center;
   align-items: center;
 }
+
 .color-code{
     font-family: 'Montserrat', sans-serif;
     padding: 10px;
@@ -40,3 +89,4 @@ body {
 .color-code, ul{
     list-style-type: none;
 }
+

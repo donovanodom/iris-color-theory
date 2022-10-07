@@ -201,10 +201,20 @@ const Colors = () => {
   };
 
   const handleCount = (e) => {
-    setCount(e.target.value);
+    let num = e.target.value
+    if(num < 4){
+      alert('out of bounds')
+      setCount(4)
+    }else if(num > 20){
+      alert('out of bounds')
+      setCount(20)
+    }else{
+      setCount(num);
+    }
   };
   
   const handleScheme = (e) => {
+    e.preventDefault()
     setScheme(e.target.value)
   }
 
