@@ -200,16 +200,15 @@ const Colors = () => {
     setBase([randomNumber(0, 360), randomNumber(20, 80), randomNumber(20, 80)]);
   };
 
-  const handleCount = (e) => {
-    let num = e.target.value
-    if(num < 4){
-      alert('out of bounds')
-      setCount(4)
-    }else if(num > 20){
-      alert('out of bounds')
-      setCount(20)
-    }else{
-      setCount(num);
+  const handleUpCount = () => {
+    if(count + 1 <= 20){
+      setCount(count + 1)
+    }
+  };
+  
+   const handleDownCount = () => {
+    if(count - 1 >= 4){
+      setCount(count - 1)
     }
   };
   
@@ -220,7 +219,7 @@ const Colors = () => {
 
   return (
     <div className="colors">
-      <Controls generate={generate} handleCount={handleCount} count={count} handleScheme={handleScheme} scheme={scheme}/>
+      <Controls generate={generate} handleUpCount={handleUpCount} handleDownCount={handleDownCount} count={count} handleScheme={handleScheme} scheme={scheme}/>
       <div className="color-blocks">
         {schemes[scheme](base, count).map(([h, s, l], i) => (
           <Color 

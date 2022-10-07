@@ -1,12 +1,19 @@
 import React from "react";
-import { GrCycle } from "react-icons/gr";
+import { FaExchangeAlt, FaEllipsisH, FaCaretUp, FaCaretDown } from "react-icons/fa";
 
-const Controls = ({generate, handleCount, count, handleScheme, scheme}) => {
+const Controls = ({generate, handleUpCount, handleDownCount,count, handleScheme, scheme}) => {
   return(
     <div className="controls">
       <div>Tools</div>
-      <div id='generate' onClick = {generate}><GrCycle/></div>
-      <input type='number' min="4" max="20" defaultValue={count} onChange={handleCount}></input>
+      <div  onClick = {generate}><FaExchangeAlt className='icons'/></div>
+      
+      <div><FaEllipsisH className='icons'/></div>
+      
+      <div className='count-box'>
+        <button onClick={handleUpCount} id='up-arrow'><FaCaretUp /></button>
+        <div>{count}</div>
+        <button onClick={handleDownCount} id='down-arrow'><FaCaretDown /></button>
+      </div>
       <select name="color scheme" id="color-scheme" value={scheme} onChange={handleScheme}>
         <option value="monoChromatic">MonoChromatic</option>
         <option value="analogous">Analogous</option>
