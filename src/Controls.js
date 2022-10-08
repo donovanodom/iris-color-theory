@@ -1,32 +1,30 @@
 import React from "react";
-import { FaExchangeAlt, FaEllipsisH, FaCaretUp, FaCaretDown } from "react-icons/fa";
+import {useState } from 'react'
+import { FaRedoAlt } from "react-icons/fa";
 
-const Controls = ({generate, handleUpCount, handleDownCount,count, handleScheme, scheme}) => {
+const Controls = ({generate, handleScheme, scheme}) => {
+  const [drop, setDrop] = useState(false)
+  const handleDrop = (e) => {
+    e.preventDefault()
+    setDrop(!drop)
+  }
   return(
     <div className="controls">
       <div className='tools'>
-        <div>Tools</div>
-        <div  onClick = {generate}><FaExchangeAlt className='icons'/></div>
-        
-        <div><FaEllipsisH className='icons'/></div>
-        
-        <div className='count-box'>
-          <button onClick={handleUpCount} id='up-arrow'><FaCaretUp /></button>
-          <div>{count}</div>
-          <button onClick={handleDownCount} id='down-arrow'><FaCaretDown /></button>
-        </div>
-        <select name="color scheme" id="color-scheme" value={scheme} onChange={handleScheme}>
-          <option value="monoChromatic">MonoChromatic</option>
-          <option value="analogous">Analogous</option>
-          <option value="complementary">Complementary</option>
-          <option value="splitComplementary">Split Complementary</option>
-          <option value='triadic'>Triadic</option>
-          <option value='square'>Square</option>
-        </select>
-       </div>
+        <div  onClick={generate} id='generate'><FaRedoAlt /></div>
+        <div name="color scheme" id="color-scheme" onClick={handleDrop}>{scheme}</div>
+      </div>
+      <div className={drop ? 'open' : 'closed'} id='menu' onClick={handleDrop}>
+        <button onClick={handleScheme}value='Monochromatic'>MonoChromatic</button>
+        <button onClick={handleScheme}value='Analogous'>Analogous</button>
+        <button onClick={handleScheme}value='Complementary'>Complementary</button>
+        <button onClick={handleScheme}value='Split Complementary'>Split Complementary</button>
+        <button onClick={handleScheme}value='Triadic'>Triadic</button>
+        <button onClick={handleScheme}value='Square'>Square</button>
+      </div>
     </div>
   )
   
 };
 
-export default Controls;
+export default React.memo(Controls);

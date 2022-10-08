@@ -13,7 +13,7 @@ const Colors = () => {
   
   const namer = require('color-namer')
 
-  const [scheme, setScheme] = useState("monoChromatic");
+  const [scheme, setScheme] = useState("Monochromatic");
   const [count, setCount] = useState(4);
   const [base, setBase] = useState(
     [randomNumber(0, 359), randomNumber(20, 80), randomNumber(20, 80)],
@@ -33,26 +33,6 @@ const Colors = () => {
     }
     return shuffled
   }
-
-  // const monoChromatic = (base, count) => {
-  //   let arr = [base],
-  //     i = 2,
-  //     s = Math.floor(base[1] / count),
-  //     l = Math.floor(base[2] / count);
-  //   while (i <= count) {
-  //     arr.push([
-  //       base[0] > 20 && base[0] < 340
-  //         ? base[0] + randomNumber(-20, 20)
-  //         : base[0] < 20
-  //         ? base[0] + randomNumber(0, 40)
-  //         : base[0] + randomNumber(-40, 0),
-  //       s * i + randomNumber(0, 5),
-  //       l * i + randomNumber(0, 5),
-  //     ]);
-  //     i++;
-  //   }
-  //   return shuffleOrder(arr)
-  // };
   
   const monoChromatic = (base, count) => {
     let i = 0, arr = [], piv = [...base]
@@ -175,12 +155,12 @@ const Colors = () => {
   }
   
   const schemes = {
-    monoChromatic: monoChromatic,
-    analogous: analogous,
-    complementary: complementary,
-    splitComplementary: splitComplementary,
-    triadic: triadic,
-    square: square
+    'Monochromatic': monoChromatic,
+    'Analogous': analogous,
+    'Complementary': complementary,
+    'Split Complementary': splitComplementary,
+    'Triadic': triadic,
+    'Square': square
   };
 
   const hslToHex = (h, s, l) => {
@@ -199,28 +179,26 @@ const Colors = () => {
   const generate = () => {
     setBase([randomNumber(0, 360), randomNumber(20, 80), randomNumber(20, 80)]);
   };
-
-  const handleUpCount = () => {
-    if(count + 1 <= 20){
+    
+  function handleWheel(e) {
+    if(count + 1 <= 12 && e.deltaY < 0){
       setCount(count + 1)
-    }
-  };
-  
-   const handleDownCount = () => {
-    if(count - 1 >= 4){
+    }else if(count - 1 >= 4 && e.deltaY > 0){
       setCount(count - 1)
     }
-  };
+  }
   
   const handleScheme = (e) => {
     e.preventDefault()
     setScheme(e.target.value)
   }
+  
+
 
   return (
     <div className="colors">
-      <Controls generate={generate} handleUpCount={handleUpCount} handleDownCount={handleDownCount} count={count} handleScheme={handleScheme} scheme={scheme}/>
-      <div className="color-blocks">
+      <Controls generate={generate} handleScheme={handleScheme} scheme={scheme} />
+      <div className="color-blocks" onWheel={handleWheel}>
         {schemes[scheme](base, count).map(([h, s, l], i) => (
           <Color 
             name={namer(hslToHex(h,s,l),{pick: ['ntc'], distance: 'deltaE'})['ntc'][0]['name']}

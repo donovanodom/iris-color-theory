@@ -24,4 +24,4 @@ const Color = ({h, s, l, i, hslToHex, name}) => {
     )
 }
 
-export default Color
+export default React.memo(Color)
