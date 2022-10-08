@@ -1,29 +1,21 @@
 import React from "react";
-import { FaExchangeAlt, FaEllipsisH, FaCaretUp, FaCaretDown } from "react-icons/fa";
+import { FaRedoAlt } from "react-icons/fa";
 
-const Controls = ({generate, handleUpCount, handleDownCount,count, handleScheme, scheme}) => {
+const Controls = ({generate, handleScheme, scheme, drop, handleDrop}) => {
   return(
     <div className="controls">
       <div className='tools'>
-        <div>Tools</div>
-        <div  onClick = {generate}><FaExchangeAlt className='icons'/></div>
-        
-        <div><FaEllipsisH className='icons'/></div>
-        
-        <div className='count-box'>
-          <button onClick={handleUpCount} id='up-arrow'><FaCaretUp /></button>
-          <div>{count}</div>
-          <button onClick={handleDownCount} id='down-arrow'><FaCaretDown /></button>
-        </div>
-        <select name="color scheme" id="color-scheme" value={scheme} onChange={handleScheme}>
-          <option value="monoChromatic">MonoChromatic</option>
-          <option value="analogous">Analogous</option>
-          <option value="complementary">Complementary</option>
-          <option value="splitComplementary">Split Complementary</option>
-          <option value='triadic'>Triadic</option>
-          <option value='square'>Square</option>
-        </select>
-       </div>
+        <div  onClick = {generate}><FaRedoAlt className='icons'/></div>
+        <div name="color scheme" id="color-scheme" onClick={handleDrop}>{scheme}</div>
+      </div>
+      <div className={drop ? 'open' : 'closed'} id='menu'>
+        {scheme = 'Monochromatic' ? null : <div onCLick={handleScheme('Monochromatic')} >MonoChromatic</div>}
+        {scheme = 'Analogous' ? null : <div onCLick={handleScheme('Analogous')}>Analogous</div>}
+        {scheme = 'Complementary' ? null : <div onCLick={handleScheme('Complementary')}>Complementary</div>}
+        {scheme = 'Split Complementary' ? null : <div onCLick={handleScheme('Split Complementary')}>Split Complementary</div>}
+        {scheme = 'Triadic' ? null : <div onCLick={handleScheme('Triadic')}>Triadic</div>}
+        {scheme = 'Square' ? null : <div onCLick={handleScheme('Square')}>Square</div>}
+      </div>
     </div>
   )
   
