@@ -26,21 +26,19 @@ body {
   color: #282828;
 }
 .open{
-  width: calc(100% - 366px) ;
+  width: calc(100% - 400px) ;
   overflow: hidden;
   padding-right: 12px;
-  
   transition: width 0.8s ease, color 0.3s linear 0.5s;
   color: white;
 }
+
 #menu{
   height: 100px;
   position: fixed;
   bottom: 20px;
-  left: 334px;
+  left: 368px;
   background-color: #282828;
-  font-weight: 600;
-  font-family: 'Montserrat', sans-serif;
   display: flex;
   text-align: right;
   flex-direction: row;
@@ -48,6 +46,14 @@ body {
   align-items: center;
   border-bottom-right-radius: 12px;
   border-top-right-radius: 12px;
+}
+#menu button{
+  color: inherit;
+  background-color: #282828;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+  border: none;
+  font-size: 14.74px;
 }
 .tools{
   position: fixed;
@@ -57,22 +63,27 @@ body {
   color: white;
   font-weight: 600;
   font-family: 'Montserrat', sans-serif;
-  width: 326px;
+  width: 360px;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: left;
   align-items: center;
   height: 100px;
   border-radius: 12px;
 }
 
-.icons {
+#generate {
   color: white;
   font-size: 20px;
+  width: 140px;
+  text-align: center;
 }
 
-.icons:hover{
+#generate:hover{
   color: #246DFF;
+}
+
+#color-scheme{
 }
 
 .color-blocks {
