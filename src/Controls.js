@@ -1,7 +1,13 @@
 import React from "react";
+import {useState } from 'react'
 import { FaRedoAlt } from "react-icons/fa";
 
-const Controls = ({generate, handleScheme, scheme, drop, handleDrop}) => {
+const Controls = ({generate, handleScheme, scheme}) => {
+  const [drop, setDrop] = useState(false)
+  const handleDrop = (e) => {
+    e.preventDefault()
+    setDrop(!drop)
+  }
   return(
     <div className="controls">
       <div className='tools'>
@@ -21,4 +27,4 @@ const Controls = ({generate, handleScheme, scheme, drop, handleDrop}) => {
   
 };
 
-export default Controls;
+export default React.memo(Controls);

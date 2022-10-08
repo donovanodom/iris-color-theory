@@ -15,7 +15,6 @@ const Colors = () => {
 
   const [scheme, setScheme] = useState("Monochromatic");
   const [count, setCount] = useState(4);
-  const [drop, setDrop] = useState(false)
   const [base, setBase] = useState(
     [randomNumber(0, 359), randomNumber(20, 80), randomNumber(20, 80)],
   );
@@ -180,16 +179,7 @@ const Colors = () => {
   const generate = () => {
     setBase([randomNumber(0, 360), randomNumber(20, 80), randomNumber(20, 80)]);
   };
-  
-  // const handleScroll = (e) => {
-  //   if(count + 1 <= 20 && e.currentTarget.scrollTop){
-  //     setCount(count + 1)
-  //   }else if(count - 1 >= 4 && e.currentTarget.offsetHeight){
-  //     setCount(count - 1)
-  //   }
-  // }
-  
-  
+    
   function handleWheel(e) {
     if(count + 1 <= 12 && e.deltaY < 0){
       setCount(count + 1)
@@ -203,14 +193,11 @@ const Colors = () => {
     setScheme(e.target.value)
   }
   
-  const handleDrop = (e) => {
-    e.preventDefault()
-    setDrop(!drop)
-  }
+
 
   return (
     <div className="colors">
-      <Controls generate={generate} handleScheme={handleScheme} scheme={scheme} drop={drop} handleDrop={handleDrop}/>
+      <Controls generate={generate} handleScheme={handleScheme} scheme={scheme} />
       <div className="color-blocks" onWheel={handleWheel}>
         {schemes[scheme](base, count).map(([h, s, l], i) => (
           <Color 

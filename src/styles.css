@@ -73,14 +73,21 @@ body {
 }
 
 #generate {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: white;
   font-size: 20px;
-  width: 140px;
+  margin: 0 58px;
   text-align: center;
 }
 
 #generate:hover{
-  color: #246DFF;
+  background-color: #46474a;
+  height: 40px;
+  width: 40px;
+  margin: 0 48px;
+  border-radius: 12px;
 }
 
 #color-scheme{
