@@ -10,7 +10,7 @@ const Controls = ({generate, handleScheme, scheme}) => {
   }
   return(
     <div className="controls">
-      <div className={drop ? 'a-tools' : 'tools'}>
+      <div className='tools'>
         <div  onClick={generate} id='generate'><FaRedoAlt /></div>
         <div name="color scheme" id="color-scheme" onClick={handleDrop}>{scheme}</div>
       </div>
