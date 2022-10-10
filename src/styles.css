@@ -156,8 +156,38 @@ body {
   font-weight: 400;
   font-family: 'Montserrat', sans-serif;
   border-radius: 12px;
+  list-style-type: none;
 }
-.color-code, ul{
-    list-style-type: none;
+.instructions{
+  display: flex;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  color: white;
+  background-color: #282828;
+  border-radius: 12px;
+} 
+.open-instructions{
+  display: flex;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 360px;
+  height: auto;
+  color: white;
+  background-color: #282828;
+  border-radius: 12px;
+} 
+.instructions-list{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  margin-right: 20px;
 }
-
+#help{
+  font-size: 20px;
+  position: fixed;
+  top: 30px;
+  right: 30px;
+}

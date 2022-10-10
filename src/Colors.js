@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import Controls from "./Controls";
 import Color from './Color';
+import Instructions from './Instructions'
 
 
 const Colors = () => {
@@ -210,6 +211,7 @@ const Colors = () => {
             hslToHex={hslToHex}
           />
         ))}
+        <Instructions />
       </div>
     </div>
   );
