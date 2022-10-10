@@ -3,6 +3,7 @@ import { useState } from "react";
 import Controls from "./Controls";
 import Color from './Color';
 import Instructions from './Instructions'
+import Logo from './Logo'
 
 
 const Colors = () => {
@@ -198,6 +199,7 @@ const Colors = () => {
 
   return (
     <div className="colors">
+      <Logo />
       <Controls generate={generate} handleScheme={handleScheme} scheme={scheme} />
       <div className="color-blocks" onWheel={handleWheel}>
         {schemes[scheme](base, count).map(([h, s, l], i) => (
