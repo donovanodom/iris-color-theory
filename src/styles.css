@@ -22,23 +22,26 @@ body {
   width: 0;
   overflow: hidden;
   padding: 0;
-  transition: width 0.8s ease 0.1s, color 0.1s linear;
+  transition: width 0.8s ease 0.1s, color 0s linear;
   color: #282828;
 }
+
 .open{
   width: calc(100% - 400px) ;
   overflow: hidden;
   padding-right: 12px;
+  border-radius: -12px;
   transition: width 0.8s ease, color 0.3s linear 0.5s;
   color: white;
+  background-color: #282828;
 }
 
 #menu{
+  background-color: #282828;
   height: 100px;
   position: fixed;
   bottom: 20px;
   left: 368px;
-  background-color: #282828;
   display: flex;
   text-align: right;
   flex-direction: row;
@@ -47,19 +50,39 @@ body {
   border-bottom-right-radius: 12px;
   border-top-right-radius: 12px;
 }
+
 #menu button{
   color: inherit;
-  background-color: #282828;
+  background: none;
   font-weight: 600;
   font-family: 'Montserrat', sans-serif;
   border: none;
   font-size: 14.74px;
+  text-align: left;
+  padding: 0 10px;
+  cursor: default;
+  white-space: nowrap;
+  position: relative;
+  top: 0;
+  transition: all linear .2s;
 }
+
+/* #menu button:hover{
+  position: relative;
+  bottom: 2px;
+  transition: all linear .2s;
+} */
+
+#menu button:active{
+  position: relative;
+  top: 2px;
+}
+
 .tools{
+  background-color: #282828;
   position: fixed;
   bottom: 20px;
   left: 20px;
-  background-color: #282828;
   color: white;
   font-weight: 600;
   font-family: 'Montserrat', sans-serif;
@@ -70,6 +93,7 @@ body {
   align-items: center;
   height: 100px;
   border-radius: 12px;
+  cursor: default;
 }
 
 #generate {
@@ -91,6 +115,19 @@ body {
 }
 
 #color-scheme{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  padding:0 10px;
+}
+
+#color-scheme:hover{
+  background-color: #46474a;
+  
+  height: 40px;
+  border-radius: 12px;
 }
 
 .color-blocks {
@@ -111,12 +148,58 @@ body {
 }
 
 .color-code{
-    font-family: 'Montserrat', sans-serif;
-    padding: 10px;
-    text-align: center;
-    background-color: white;
+  font-family: 'Montserrat', sans-serif;
+  padding: 10px;
+  text-align: center;
+  background-color: #282828;
+  color: white;
+  font-weight: 400;
+  font-family: 'Montserrat', sans-serif;
+  border-radius: 12px;
+  list-style-type: none;
 }
-.color-code, ul{
-    list-style-type: none;
+.instructions{
+  display: flex;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  background-color: #282828;
+  border-radius: 12px;
+  transition: color 0.8s ease, width 0.3s ease, height 0.3s ease;
+  color: #282828;
+} 
+.open-instructions{
+  overflow: hidden;
+  display: flex;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 360px;
+  height: 149px;
+  background-color: #282828;
+  border-radius: 12px;
+  color: white;
+  transition: color 0.3s ease 0.8s , width 0.8s ease, height 0.8s ease;
+} 
+.instructions .instructions-list{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  margin-right: 20px;
+  display: none;
+}
+.open-instructions .instructions-list{
+  display: block;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  margin-right: 20px; 
 }
 
+#help{
+  color: white;
+  font-size: 20px;
+  position: fixed;
+  top: 30px;
+  right: 30px;
+}

@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import Controls from "./Controls";
 import Color from './Color';
+import Instructions from './Instructions'
 
 
 const Colors = () => {
@@ -181,7 +182,7 @@ const Colors = () => {
   };
     
   function handleWheel(e) {
-    if(count + 1 <= 12 && e.deltaY < 0){
+    if(count + 1 <= 8 && e.deltaY < 0){
       setCount(count + 1)
     }else if(count - 1 >= 4 && e.deltaY > 0){
       setCount(count - 1)
@@ -210,6 +211,7 @@ const Colors = () => {
             hslToHex={hslToHex}
           />
         ))}
+        <Instructions />
       </div>
     </div>
   );
