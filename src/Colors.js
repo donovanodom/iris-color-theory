@@ -182,7 +182,7 @@ const Colors = () => {
   };
     
   function handleWheel(e) {
-    if(count + 1 <= 12 && e.deltaY < 0){
+    if(count + 1 <= 8 && e.deltaY < 0){
       setCount(count + 1)
     }else if(count - 1 >= 4 && e.deltaY > 0){
       setCount(count - 1)
