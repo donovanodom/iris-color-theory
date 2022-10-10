@@ -22,23 +22,26 @@ body {
   width: 0;
   overflow: hidden;
   padding: 0;
-  transition: width 0.8s ease 0.1s, color 0.1s linear;
+  transition: width 0.8s ease 0.1s, color 0s linear;
   color: #282828;
 }
+
 .open{
   width: calc(100% - 400px) ;
   overflow: hidden;
   padding-right: 12px;
+  border-radius: -12px;
   transition: width 0.8s ease, color 0.3s linear 0.5s;
   color: white;
+  background-color: #282828;
 }
 
 #menu{
+  background-color: #282828;
   height: 100px;
   position: fixed;
   bottom: 20px;
   left: 368px;
-  background-color: #282828;
   display: flex;
   text-align: right;
   flex-direction: row;
@@ -47,19 +50,45 @@ body {
   border-bottom-right-radius: 12px;
   border-top-right-radius: 12px;
 }
+
 #menu button{
   color: inherit;
-  background-color: #282828;
+  background: none;
   font-weight: 600;
   font-family: 'Montserrat', sans-serif;
   border: none;
   font-size: 14.74px;
+  text-align: left;
+  padding: 0 10px;
+  cursor: default;
+  white-space: nowrap;
+  position: relative;
+  top: 0;
+  transition: all linear .2s;
 }
+
+/* #menu button:hover{
+  position: relative;
+  bottom: 2px;
+  transition: all linear .2s;
+} */
+
+#menu button:active{
+  position: relative;
+  top: 2px;
+}
+.controls {
+  background-color: #282828df;
+}
+.controls:hover{
+  background-color: #282828;
+}
+
 .tools{
   position: fixed;
   bottom: 20px;
   left: 20px;
-  background-color: #282828;
+  background-color: inherit;
   color: white;
   font-weight: 600;
   font-family: 'Montserrat', sans-serif;
@@ -70,6 +99,26 @@ body {
   align-items: center;
   height: 100px;
   border-radius: 12px;
+  cursor: default;
+  transition: background-color 0.1s ease .8s;
+}
+.a-tools{
+  background-color: #282828;
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  color: white;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  height: 100px;
+  border-radius: 12px;
+  cursor: default;
+  width: 360px;
+  transition: background-color 0.1s ease .8s;
 }
 
 #generate {
@@ -124,10 +173,14 @@ body {
 }
 
 .color-code{
-    font-family: 'Montserrat', sans-serif;
-    padding: 10px;
-    text-align: center;
-    background-color: white;
+  font-family: 'Montserrat', sans-serif;
+  padding: 10px;
+  text-align: center;
+  background-color: #282828;
+  color: white;
+  font-weight: 400;
+  font-family: 'Montserrat', sans-serif;
+  border-radius: 12px;
 }
 .color-code, ul{
     list-style-type: none;
