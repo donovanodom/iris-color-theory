@@ -24,21 +24,21 @@ body {
   padding: 0;
   transition: width 0.8s ease 0.1s, color 0s linear;
   color: #282828;
+  height: 100px;
 }
 
 .open{
   width: calc(100% - 400px) ;
   overflow: hidden;
   padding-right: 12px;
-  border-radius: -12px;
   transition: width 0.8s ease, color 0.3s linear 0.5s;
   color: white;
   background-color: #282828;
+  height: 100px;
 }
 
 #menu{
   background-color: #282828;
-  height: 100px;
   position: fixed;
   bottom: 20px;
   left: 368px;
@@ -218,4 +218,259 @@ body {
   border-radius: 12px;
   width: 200px;
   height: 40px;
+  letter-spacing: -1px
+}
+
+#ct{
+  display: inline; 
+  font-weight: 200;
+  letter-spacing: 0px
+}
+
+@media all and (max-width: 900px) {
+  .colors {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+}
+#bars{
+  z-index: 99;
+  position: absolute;
+  top: 7px;
+  left: 7px;
+  color: white;
+  font-size: 20px;
+}
+.closed{
+  width: 34px;
+  height: 34px;
+  overflow: hidden;
+  padding: 0;
+  transition: width 0.8s ease 0.1s, height 0.8s ease 0.1s, color 0s linear;
+  color: #282828;
+  border-radius: 12px;
+}
+
+.open{
+  width: calc(100% - 40px) ;
+  overflow: hidden;
+  padding-right: 0px;
+  transition: width 0.8s ease, height 0.8s ease 0.1s, color 0.3s linear 0.5s;
+  color: white;
+  background-color: #282828;
+  height: calc(100% - 148px);
+  border-radius: 12px;
+}
+
+#menu{
+  background-color: #282828;
+  position: fixed;
+  top: 126px;
+  left: 20px; /* comeback here */
+  display: flex;
+  text-align: right;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 12px;
+}
+
+#menu button{
+  color: inherit;
+  background: none;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+  border: none;
+  font-size: 14.74px;
+  text-align: left;
+  padding: 0 10px;
+  cursor: default;
+  white-space: nowrap;
+  position: relative;
+  top: 0;
+  transition: all linear .2s;
+}
+
+/* #menu button:hover{
+  position: relative;
+  bottom: 2px;
+  transition: all linear .2s;
+} */
+
+#menu button:active{
+  position: relative;
+  top: 2px;
+}
+
+.tools{
+  background: none;
+  position: fixed;
+  top: 72px;
+  left: 20px;
+  color: white;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+  width: 34px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 88px;
+  cursor: default;
+  border-radius: 12px;
+}
+
+#generate {
+  width: 34px;
+  position: relative;
+  top: 0;
+  background-color: #282828;
+  border-radius: 12px;
+  height: 34px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 20px;
+  margin: 0;
+  text-align: center;
+}
+
+#generate:hover{
+  background-color: #282828;
+  height: 34px;
+  width: 34px;
+  margin: 0;
+  border-radius: 12px;
+}
+
+#color-scheme{
+  width: 34px;
+  background-color: #282828;
+  border-radius: 12px;
+  position: relative;
+  bottom: 0px;
+  display: flex;
+  height: 34px;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  padding:0;
+  font-weight: 200;
+  font-size: 20px;
+}
+
+#color-scheme:hover{
+  background-color: #282828;
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+}
+
+.color-blocks {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  flex-wrap: nowrap;
+  height: calc(100% -34px);
+  width:100%
+}
+.color-block {
+  display: auto;
+  width: 100%;
+  height: auto;
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.color-code{
+  font-family: 'Montserrat', sans-serif;
+  padding: 6px;
+  text-align: center;
+  background-color: #282828;
+  color: white;
+  font-weight: 400;
+  font-family: 'Montserrat', sans-serif;
+  border-radius: 12px;
+  list-style-type: none;
+}
+.rgb{
+  display: none;
+}
+.hex{
+  display: none;
+  font-size:14px;
+}
+.instructions{
+  display: flex;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 34px;
+  height: 34px;
+  background-color: #282828;
+  border-radius: 12px;
+  transition: color 0.8s ease, width 0.3s ease, height 0.3s ease;
+  color: #282828;
+} 
+
+.open-instructions{
+  overflow: hidden;
+  display: flex;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: calc(100% - 40px);
+  height: calc(100% - 40px);
+  background-color: #282828;
+  border-radius: 12px;
+  color: white;
+  transition: color 0.3s ease 0.8s , width 0.8s ease, height 0.8s ease;
+} 
+.instructions .instructions-list{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  display: none;
+}
+.open-instructions .instructions-list{
+  display: block;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  margin-right: 20px; 
+  margin-bottom: 20px;
+}
+
+#help{
+  color: white;
+  font-size: 20px;
+  position: fixed;
+  top: 27px;
+  right: 27px;
+}
+
+.logo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background-color: #282828;
+  color: white;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+  border-radius: 12px;
+  width: 34px;
+  height: 34px;
+  letter-spacing: -1px
+}
+#ct{
+  display: none;
+}
+
 }

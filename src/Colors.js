@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Controls from "./Controls";
 import Color from './Color';
 import Instructions from './Instructions'
@@ -182,6 +182,18 @@ const Colors = () => {
     setBase([randomNumber(0, 360), randomNumber(20, 80), randomNumber(20, 80)]);
   };
     
+  useEffect(() => {
+    const listener = event => {
+      if (event.code === "Enter" || event.code === "NumpadEnter") {
+        event.preventDefault();
+        generate()
+      }
+    };
+    document.addEventListener("keydown", listener);
+    return () => {
+      document.removeEventListener("keydown", listener);
+    };
+  }, []);
   function handleWheel(e) {
     if(count + 1 <= 8 && e.deltaY < 0){
       setCount(count + 1)
@@ -200,7 +212,7 @@ const Colors = () => {
   return (
     <div className="colors">
       <Logo />
-      <Controls generate={generate} handleScheme={handleScheme} scheme={scheme} />
+      
       <div className="color-blocks" onWheel={handleWheel}>
         {schemes[scheme](base, count).map(([h, s, l], i) => (
           <Color 
@@ -213,6 +225,7 @@ const Colors = () => {
             hslToHex={hslToHex}
           />
         ))}
+        <Controls generate={generate} handleScheme={handleScheme} scheme={scheme} />
         <Instructions />
       </div>
     </div>

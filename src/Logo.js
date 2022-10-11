@@ -3,7 +3,7 @@ import React from 'react'
 const Logo = () => {
 
     return (
-        <div className='logo'> iris <div style={{display: 'inline', fontWeight: '300'}}>&nbsp; color theory</div></div>
+        <div className='logo'> iris <div id='ct' >&nbsp; color theory</div></div>
     )
 }
 
