@@ -1,10 +1,31 @@
 import React from 'react'
+import {useState, useEffect} from 'react'
 
 const Color = ({h, s, l, i, hslToHex, name}) => {
     const hexToRgb = function(str){
         str = str.slice(1)
         let RgbHex = str.match(/.{1,2}/g);
         return `rgb(${parseInt(RgbHex[0], 16)}, ${parseInt(RgbHex[1], 16)}, ${parseInt(RgbHex[2], 16)})`
+    }
+    
+    const [isDesktop, setDesktop] = useState(window.innerWidth >= 900);
+    const [dis, setDis] = useState(name ? name : 'unknowncolor')
+
+    const updateMedia = () => {
+        setDesktop(window.innerWidth >= 900);
+    };
+
+    useEffect(() => {
+        window.addEventListener("resize", updateMedia);
+        return () => window.removeEventListener("resize", updateMedia);
+    });
+    
+    const display = () => {
+        if(dis == hex){
+            setDis(name)
+        }else{
+            setDis(hex)
+        }
     }
     const hex = hslToHex(h, s, l).toUpperCase()
     return(
@@ -16,9 +37,9 @@ const Color = ({h, s, l, i, hslToHex, name}) => {
             }}
         >
             <ul className='color-code'>
-                <li>{hex}</li>
-                <li>{hexToRgb(hex)}</li>
-                <li>{name ? name : 'unknowncolor'}</li>
+                <li className='hex'>{hex}</li>
+                <li className='rgb'>{hexToRgb(hex)}</li>
+                <li value={dis} style={dis == name ? {cursor: 'default'} : null} onClick={isDesktop ? null : display}>{dis}</li>
             </ul>
         </div>
     )
