@@ -1,15 +1,11 @@
 {
   "name": "iris-color-theory",
   "version": "1.0.0",
-  "homepage": "https://donovanodom.github.io/iris-color-theory/",
   "description": "",
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
     "color-namer": "^1.4.0",
-    "gh-pages": "^4.0.0",
-    "install": "^0.13.0",
-    "npm": "^8.19.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.4.0",
@@ -22,15 +18,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "predeploy" : "npm run build",
-    "deploy" : "gh-pages -d build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+  "browserslist": [">0.2%", "not dead", "not ie <= 11", "not op_mini all"]
 }
