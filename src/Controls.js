@@ -31,7 +31,7 @@ const Controls = ({generate, handleScheme, scheme}) => {
             <button onClick={handleScheme} value='Monochromatic'>MonoChromatic</button>
             <button onClick={handleScheme} value='Analogous'>Analogous</button>
             <button onClick={handleScheme} value='Complementary'>Complementary</button>
-            <button onClick={handleScheme} value='Split Complementary'>Split Complementary</button>
+            <button onClick={handleScheme} value='Split Complementary'>SplitComplementary</button>
             <button onClick={handleScheme} value='Triadic'>Triadic</button>
             <button onClick={handleScheme} value='Square'>Square</button>
           </div>
