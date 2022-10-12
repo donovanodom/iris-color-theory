@@ -29,7 +29,6 @@ const Color = ({h, s, l, i, hslToHex, name}) => {
             setDis(name)
         }
     }
-    console.log(name, dis)
     const hex = hslToHex(h, s, l).toUpperCase()
     return(
         <div
