@@ -8,11 +8,11 @@ const Color = ({h, s, l, i, hslToHex, name}) => {
         return `rgb(${parseInt(RgbHex[0], 16)}, ${parseInt(RgbHex[1], 16)}, ${parseInt(RgbHex[2], 16)})`
     }
     
-    const [isDesktop, setDesktop] = useState(window.innerWidth >= 900);
+    const [isDesktop, setDesktop] = useState(window.innerWidth >= 965);
     const [dis, setDis] = useState(name ? name : 'unknowncolor')
 
     const updateMedia = () => {
-        setDesktop(window.innerWidth >= 900);
+        setDesktop(window.innerWidth >= 965);
     };
 
     useEffect(() => {

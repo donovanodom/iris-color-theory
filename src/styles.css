@@ -52,6 +52,7 @@ body{
   display: flex;
   text-align: right;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
   border-bottom-right-radius: 12px;
@@ -60,6 +61,7 @@ body{
 
 #menu button{
   color: inherit;
+  flex: 0 32%;
   background: none;
   font-weight: 600;
   font-family: 'Montserrat', sans-serif;
@@ -235,7 +237,7 @@ body{
   letter-spacing: 0px
 }
 
-@media all and (max-width: 900px) {
+@media all and (max-width: 965px) {
   .colors {
   display: flex;
   flex-direction: column;
@@ -280,6 +282,7 @@ body{
   top: 126px;
   left: 20px; /* comeback here */
   display: flex;
+  flex-wrap: nowrap;
   text-align: right;
   flex-direction: column;
   justify-content: space-around;
@@ -288,6 +291,7 @@ body{
 }
 
 #menu button{
+  flex: 1;
   color: inherit;
   background: none;
   font-weight: 600;
