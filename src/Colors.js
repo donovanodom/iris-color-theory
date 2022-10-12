@@ -20,8 +20,7 @@ const Colors = () => {
   const [base, setBase] = useState(
     [randomNumber(0, 359), randomNumber(20, 80), randomNumber(20, 80)],
   );
-  const [touchStart, setTouchStart] = useState(null)
-  const [touchEnd, setTouchEnd] = useState(null)
+ 
   
   const shuffleOrder = (arr) => {
     let shuffled = [], left = randomNumber(0,arr.length - 1), right = left + 1
@@ -204,28 +203,7 @@ const Colors = () => {
     }
   }
   
-  const minSwipeDistance = 50 
-  
-  const onTouchStart = (e) => {
-    setTouchEnd(null) 
-    setTouchStart(e.targetTouches[0].clientY)
-  }
-  
-  const onTouchMove = (e) => setTouchEnd(e.targetTouches[0].clientY)
-  
-  const onTouchEnd = () => {
-    if (!touchStart || !touchEnd) return
-    const distance = touchStart - touchEnd
-    const isUpSwipe = distance > minSwipeDistance
-    const isDownSwipe = distance < -minSwipeDistance
-    if (isUpSwipe || isDownSwipe){
-      if(count + 1 <= 8 && isUpSwipe){
-        setCount(count + 1)
-      }else if(count - 1 >= 4 && isDownSwipe){
-        setCount(count - 1)
-      }
-    } 
-  }
+
   
 
   
@@ -240,7 +218,7 @@ const Colors = () => {
     <div className="colors">
       <Logo />
       
-      <div className="color-blocks" onWheel={handleWheel} onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
+      <div className="color-blocks" onWheel={handleWheel} >
         {schemes[scheme](base, count).map(([h, s, l], i) => (
           <Color 
             name={namer(hslToHex(h,s,l),{pick: ['ntc'], distance: 'deltaE'})['ntc'][0]['name']}
@@ -250,6 +228,8 @@ const Colors = () => {
             l={l}
             i={i}
             hslToHex={hslToHex}
+            setCount={setCount}
+            count={count}
           />
         ))}
         <Controls generate={generate} handleScheme={handleScheme} scheme={scheme} />
