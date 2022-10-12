@@ -9,10 +9,10 @@ const Controls = ({generate, handleScheme, scheme}) => {
     setDrop(!drop)
   }
   
-  const [isDesktop, setDesktop] = useState(window.innerWidth >= 900);
+  const [isDesktop, setDesktop] = useState(window.innerWidth >= 965);
 
   const updateMedia = () => {
-    setDesktop(window.innerWidth >= 900);
+    setDesktop(window.innerWidth >= 965);
   };
 
   useEffect(() => {

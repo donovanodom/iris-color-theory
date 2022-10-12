@@ -20,6 +20,7 @@ const Colors = () => {
   const [base, setBase] = useState(
     [randomNumber(0, 359), randomNumber(20, 80), randomNumber(20, 80)],
   );
+  const [touchY, setTouchY] = useState(null)
   
   const shuffleOrder = (arr) => {
     let shuffled = [], left = randomNumber(0,arr.length - 1), right = left + 1
@@ -202,6 +203,16 @@ const Colors = () => {
     }
   }
   
+  function handleTouchMove(e) {
+    let dir = e.touches[0].clientY > touchY ? 1 : 0
+    if(count + 1 <= 8 && dir){
+      setCount(count + 1)
+    }else if(count - 1 >= 4 && dir){
+      setCount(count - 1)
+    }
+    setTouchY(e.touches[0].clientY)
+  }
+  
   const handleScheme = (e) => {
     e.preventDefault()
     setScheme(e.target.value)
@@ -213,7 +224,7 @@ const Colors = () => {
     <div className="colors">
       <Logo />
       
-      <div className="color-blocks" onWheel={handleWheel}>
+      <div className="color-blocks" onWheel={handleWheel} onTouchMove={handleTouchMove}>
         {schemes[scheme](base, count).map(([h, s, l], i) => (
           <Color 
             name={namer(hslToHex(h,s,l),{pick: ['ntc'], distance: 'deltaE'})['ntc'][0]['name']}
