@@ -31,6 +31,7 @@ body{
   transition: width 0.8s ease 0.1s, color 0s linear;
   color: #282828;
   height: 100px;
+  display: none;
 }
 
 .open{
@@ -257,6 +258,9 @@ body{
   transition: width 0.8s ease 0.1s, height 0.8s ease 0.1s, color 0s linear;
   color: #282828;
   border-radius: 12px;
+}
+.closed button {
+  display: none;
 }
 
 .open{
