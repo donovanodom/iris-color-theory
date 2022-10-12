@@ -17,7 +17,7 @@ const Color = ({h, s, l, i, hslToHex, name}) => {
 
     useEffect(() => {
         window.addEventListener("resize", updateMedia);
-        return () => window.removeEventListener("resize", updateMedia);
+        return () => window.removeEventListener("resize", updateMedia); 
     });
     useEffect(() => {
       setDis(name)  
