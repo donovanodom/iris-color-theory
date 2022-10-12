@@ -20,7 +20,8 @@ const Colors = () => {
   const [base, setBase] = useState(
     [randomNumber(0, 359), randomNumber(20, 80), randomNumber(20, 80)],
   );
-  const [touchY, setTouchY] = useState(null)
+  const [touchStart, setTouchStart] = useState(null)
+  const [touchEnd, setTouchEnd] = useState(null)
   
   const shuffleOrder = (arr) => {
     let shuffled = [], left = randomNumber(0,arr.length - 1), right = left + 1
@@ -203,15 +204,30 @@ const Colors = () => {
     }
   }
   
-  function handleTouchMove(e) {
-    let dir = e.touches[0].clientY > touchY ? 1 : 0
-    if(count + 1 <= 8 && dir){
-      setCount(count + 1)
-    }else if(count - 1 >= 4 && dir){
-      setCount(count - 1)
-    }
-    setTouchY(e.touches[0].clientY)
+  const minSwipeDistance = 50 
+  
+  const onTouchStart = (e) => {
+    setTouchEnd(null) 
+    setTouchStart(e.targetTouches[0].clientY)
   }
+  
+  const onTouchMove = (e) => setTouchEnd(e.targetTouches[0].clientY)
+  
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return
+    const distance = touchStart - touchEnd
+    const isUpSwipe = distance > minSwipeDistance
+    const isDownSwipe = distance < -minSwipeDistance
+    if (isUpSwipe || isDownSwipe){
+      if(count + 1 <= 8 && isUpSwipe){
+        setCount(count + 1)
+      }else if(count - 1 >= 4 && isDownSwipe){
+        setCount(count - 1)
+      }
+    } 
+  }
+  
+
   
   const handleScheme = (e) => {
     e.preventDefault()
@@ -224,7 +240,7 @@ const Colors = () => {
     <div className="colors">
       <Logo />
       
-      <div className="color-blocks" onWheel={handleWheel} onTouchMove={handleTouchMove}>
+      <div className="color-blocks" onWheel={handleWheel} onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
         {schemes[scheme](base, count).map(([h, s, l], i) => (
           <Color 
             name={namer(hslToHex(h,s,l),{pick: ['ntc'], distance: 'deltaE'})['ntc'][0]['name']}
