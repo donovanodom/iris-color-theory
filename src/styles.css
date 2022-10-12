@@ -7,6 +7,11 @@
   font-family: sans-serif;
   text-align: center;
 }
+html,
+body{
+width:100%;
+overflow-x:hidden;
+}
 body {
   margin: 0;
   padding: 0;
@@ -177,7 +182,7 @@ body {
   top: 20px;
   right: 20px;
   width: 360px;
-  height: 149px;
+  height: 186px;
   background-color: #282828;
   border-radius: 12px;
   color: white;
@@ -238,14 +243,14 @@ body {
 #bars{
   z-index: 99;
   position: absolute;
-  top: 7px;
-  left: 7px;
+  top: 10px;
+  left: 10px;
   color: white;
   font-size: 20px;
 }
 .closed{
-  width: 34px;
-  height: 34px;
+  width: 40px;
+  height: 40px;
   overflow: hidden;
   padding: 0;
   transition: width 0.8s ease 0.1s, height 0.8s ease 0.1s, color 0s linear;
@@ -312,7 +317,7 @@ body {
   color: white;
   font-weight: 600;
   font-family: 'Montserrat', sans-serif;
-  width: 34px;
+  width: 40px;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
@@ -322,12 +327,12 @@ body {
 }
 
 #generate {
-  width: 34px;
+  width: 40px;
   position: relative;
   top: 0;
   background-color: #282828;
   border-radius: 12px;
-  height: 34px;
+  height: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -339,20 +344,20 @@ body {
 
 #generate:hover{
   background-color: #282828;
-  height: 34px;
-  width: 34px;
+  height: 40px;
+  width: 40px;
   margin: 0;
   border-radius: 12px;
 }
 
 #color-scheme{
-  width: 34px;
+  width: 40px;
   background-color: #282828;
   border-radius: 12px;
   position: relative;
   bottom: 0px;
   display: flex;
-  height: 34px;
+  height: 40px;
   justify-content: center;
   align-items: center;
   color: white;
@@ -364,8 +369,8 @@ body {
 
 #color-scheme:hover{
   background-color: #282828;
-  width: 34px;
-  height: 34px;
+  width: 40px;
+  height: 40px;
   border-radius: 12px;
 }
 
@@ -374,7 +379,7 @@ body {
   flex-direction: column;
   justify-content: left;
   flex-wrap: nowrap;
-  height: calc(100% -34px);
+  height: calc(100% -40px);
   width:100%
 }
 .color-block {
@@ -410,8 +415,8 @@ body {
   position: fixed;
   top: 20px;
   right: 20px;
-  width: 34px;
-  height: 34px;
+  width: 40px;
+  height: 40px;
   background-color: #282828;
   border-radius: 12px;
   transition: color 0.8s ease, width 0.3s ease, height 0.3s ease;
@@ -450,8 +455,8 @@ body {
   color: white;
   font-size: 20px;
   position: fixed;
-  top: 27px;
-  right: 27px;
+  top: 30px;
+  right: 30px;
 }
 
 .logo{
@@ -466,8 +471,8 @@ body {
   font-weight: 600;
   font-family: 'Montserrat', sans-serif;
   border-radius: 12px;
-  width: 34px;
-  height: 34px;
+  width: 40px;
+  height: 40px;
   letter-spacing: -1px
 }
 #ct{
