@@ -7,13 +7,13 @@
   font-family: sans-serif;
   text-align: center;
 }
+
 html,
 body{
   width:100%;
   margin: 0;
   padding: 0;
-  height: 100%;
-  min-height: -webkit-fill-available;
+  height: calc(100vh - calc(100vh - 100%));
 }
 
 
@@ -21,9 +21,10 @@ body{
 .colors {
   display: flex;
   flex-direction: row;
-  height: calc(100vh - env(safe-area-inset-bottom));
+  height: 100%;
   width: 100%;
-  
+  position: fixed;
+  bottom: 0;
 }
 
 .closed{
@@ -243,7 +244,7 @@ body{
   .colors {
   display: flex;
   flex-direction: column;
-  height: calc(100vh - env(safe-area-inset-bottom));
+  height: calc(100vh - calc(100vh - 100%));
   width: 100%;
 }
 #bars{
