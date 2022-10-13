@@ -10,10 +10,9 @@
 html,
 body{
   width:100%;
-  overflow-x:hidden;
   margin: 0;
   padding: 0;
-  height: 100vh;
+  height: 100%;
   position: fixed; 
 }
 
@@ -243,6 +242,7 @@ body{
   flex-direction: column;
   height: 100vh;
   width: 100%;
+  overflow: hidden;
 }
 #bars{
   z-index: 99;
@@ -257,7 +257,8 @@ body{
   height: 40px;
   overflow: hidden;
   padding: 0;
-  transition: width 0.8s ease 0.1s, height 0.8s ease 0.1s, color 0s linear;
+  transition: none;
+  /* transition: width 0.8s ease 0.1s, height 0.8s ease 0.1s, color 0s linear; */
   color: #282828;
   border-radius: 12px;
 }
@@ -269,7 +270,8 @@ body{
   width: calc(100% - 40px) ;
   overflow: hidden;
   padding-right: 0px;
-  transition: width 0.8s ease, height 0.8s ease 0.1s, color 0.3s linear 0.5s;
+  transition: none;
+  /* transition: width 0.8s ease, height 0.8s ease 0.1s, color 0.3s linear 0.5s; */
   color: white;
   background-color: #282828;
   height: calc(100% - 148px);
@@ -304,7 +306,8 @@ body{
   white-space: nowrap;
   position: relative;
   top: 0;
-  transition: all linear .2s;
+  transition: none;
+  /* transition: all linear .2s; */
 }
 
 /* #menu button:hover{
@@ -411,6 +414,7 @@ body{
   font-family: 'Montserrat', sans-serif;
   border-radius: 12px;
   list-style-type: none;
+  margin: 0;
 }
 .rgb{
   display: none;
@@ -428,7 +432,8 @@ body{
   height: 40px;
   background-color: #282828;
   border-radius: 12px;
-  transition: color 0.8s ease, width 0.3s ease, height 0.3s ease;
+  transition: none;
+  /* transition: color 0.8s ease, width 0.3s ease, height 0.3s ease; */
   color: #282828;
 } 
 
@@ -443,7 +448,8 @@ body{
   background-color: #282828;
   border-radius: 12px;
   color: white;
-  transition: color 0.3s ease 0.8s , width 0.8s ease, height 0.8s ease;
+  transition: none;
+  /* transition: color 0.3s ease 0.8s , width 0.8s ease, height 0.8s ease; */
 } 
 .instructions .instructions-list{
   font-family: 'Montserrat', sans-serif;
