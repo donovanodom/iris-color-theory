@@ -10,18 +10,17 @@
 html,
 body{
   width:100%;
-  overflow-x:hidden;
   margin: 0;
   padding: 0;
-  height: 100vh;
-  position: fixed; 
+  height: 100%;
 }
 
 .colors {
   display: flex;
   flex-direction: row;
-  height: 100vh;
+  height: calc(100vh - env(safe-area-inset-bottom));
   width: 100%;
+  
 }
 
 .closed{
@@ -52,6 +51,7 @@ body{
   display: flex;
   text-align: right;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
   border-bottom-right-radius: 12px;
@@ -60,6 +60,7 @@ body{
 
 #menu button{
   color: inherit;
+  flex: 0 32%;
   background: none;
   font-weight: 600;
   font-family: 'Montserrat', sans-serif;
@@ -184,7 +185,7 @@ body{
   top: 20px;
   right: 20px;
   width: 360px;
-  height: 186px;
+  height: 202px;
   background-color: #282828;
   border-radius: 12px;
   color: white;
@@ -235,11 +236,11 @@ body{
   letter-spacing: 0px
 }
 
-@media all and (max-width: 900px) {
+@media all and (max-width: 965px) {
   .colors {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: calc(100vh - env(safe-area-inset-bottom));
   width: 100%;
 }
 #bars{
@@ -255,7 +256,8 @@ body{
   height: 40px;
   overflow: hidden;
   padding: 0;
-  transition: width 0.8s ease 0.1s, height 0.8s ease 0.1s, color 0s linear;
+  transition: none;
+  /* transition: width 0.8s ease 0.1s, height 0.8s ease 0.1s, color 0s linear; */
   color: #282828;
   border-radius: 12px;
 }
@@ -267,7 +269,8 @@ body{
   width: calc(100% - 40px) ;
   overflow: hidden;
   padding-right: 0px;
-  transition: width 0.8s ease, height 0.8s ease 0.1s, color 0.3s linear 0.5s;
+  transition: none;
+  /* transition: width 0.8s ease, height 0.8s ease 0.1s, color 0.3s linear 0.5s; */
   color: white;
   background-color: #282828;
   height: calc(100% - 148px);
@@ -280,6 +283,7 @@ body{
   top: 126px;
   left: 20px; /* comeback here */
   display: flex;
+  flex-wrap: nowrap;
   text-align: right;
   flex-direction: column;
   justify-content: space-around;
@@ -288,6 +292,7 @@ body{
 }
 
 #menu button{
+  flex: 1;
   color: inherit;
   background: none;
   font-weight: 600;
@@ -300,7 +305,8 @@ body{
   white-space: nowrap;
   position: relative;
   top: 0;
-  transition: all linear .2s;
+  transition: none;
+  /* transition: all linear .2s; */
 }
 
 /* #menu button:hover{
@@ -384,13 +390,12 @@ body{
   flex-direction: column;
   justify-content: left;
   flex-wrap: nowrap;
-  height: calc(100% -40px);
+  height: 100%;
   width:100%
 }
 .color-block {
   display: auto;
   width: 100%;
-  height: auto;
   flex-grow: 1;
   display: flex;
   justify-content: center;
@@ -407,6 +412,7 @@ body{
   font-family: 'Montserrat', sans-serif;
   border-radius: 12px;
   list-style-type: none;
+  margin: 0;
 }
 .rgb{
   display: none;
@@ -424,7 +430,8 @@ body{
   height: 40px;
   background-color: #282828;
   border-radius: 12px;
-  transition: color 0.8s ease, width 0.3s ease, height 0.3s ease;
+  transition: none;
+  /* transition: color 0.8s ease, width 0.3s ease, height 0.3s ease; */
   color: #282828;
 } 
 
@@ -439,7 +446,8 @@ body{
   background-color: #282828;
   border-radius: 12px;
   color: white;
-  transition: color 0.3s ease 0.8s , width 0.8s ease, height 0.8s ease;
+  transition: none;
+  /* transition: color 0.3s ease 0.8s , width 0.8s ease, height 0.8s ease; */
 } 
 .instructions .instructions-list{
   font-family: 'Montserrat', sans-serif;

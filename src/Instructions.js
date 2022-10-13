@@ -16,7 +16,7 @@ const Instructions = () => {
                 <li>Select color pallete theme.</li>
                 <li>Press <FaRedoAlt style={{display: 'inline', position: 'relative', top: '3px'}}/> or <div style={{display: 'inline', fontStyle: 'italic'}}>enter</div> to generate random color pallete.</li>
                 <li>Use the mouse scroll or touchpad scroll to increase or decrease color count.</li>
-                <li>If in mobile view, click color name to display hex code.</li>
+                <li>If in mobile view, swipe left or right to increase or decrease color count and press color name to display hex code.</li>
             </ul>
         </div>
     )

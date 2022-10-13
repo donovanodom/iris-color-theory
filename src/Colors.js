@@ -20,6 +20,7 @@ const Colors = () => {
   const [base, setBase] = useState(
     [randomNumber(0, 359), randomNumber(20, 80), randomNumber(20, 80)],
   );
+ 
   
   const shuffleOrder = (arr) => {
     let shuffled = [], left = randomNumber(0,arr.length - 1), right = left + 1
@@ -202,6 +203,10 @@ const Colors = () => {
     }
   }
   
+
+  
+
+  
   const handleScheme = (e) => {
     e.preventDefault()
     setScheme(e.target.value)
@@ -213,7 +218,7 @@ const Colors = () => {
     <div className="colors">
       <Logo />
       
-      <div className="color-blocks" onWheel={handleWheel}>
+      <div className="color-blocks" onWheel={handleWheel} >
         {schemes[scheme](base, count).map(([h, s, l], i) => (
           <Color 
             name={namer(hslToHex(h,s,l),{pick: ['ntc'], distance: 'deltaE'})['ntc'][0]['name']}
@@ -223,6 +228,8 @@ const Colors = () => {
             l={l}
             i={i}
             hslToHex={hslToHex}
+            setCount={setCount}
+            count={count}
           />
         ))}
         <Controls generate={generate} handleScheme={handleScheme} scheme={scheme} />
