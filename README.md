@@ -1,4 +1,4 @@
 # iris-color-theory
 Created with CodeSandbox
 
-Beta Demo https://www.iriscolortheory.netlify.app
+Beta Demo https://iriscolortheory.netlify.app
